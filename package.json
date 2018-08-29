@@ -1,23 +1,19 @@
 {
-  "name": "@axetroy/vm",
-  "version": "0.3.3",
+  "name": "@yeanzhi/vm",
+  "version": "0.0.3",
   "description": "Javascript Interpreter, run Javascript code in ECMAScript",
   "main": "./dist/vm.js",
   "typings": "./dist/vm.d.ts",
   "scripts": {
-    "test":
-      "rm -rf ./build && tsc -p ./ && nyc ava ./build/test ./build/src/**/*.test.js",
-    "build":
-      "rm -rf ./dist && webpack --display-error-details --progress --colors",
+    "test": "rm -rf ./build && tsc -p ./ && nyc ava ./build/test ./build/src/**/*.test.js",
+    "build": "rm -rf ./dist && webpack --display-error-details --progress --colors",
     "start": "npm run build && parcel ./doc/index.html -d vm.js",
-    "docs":
-      "npm run build && parcel build doc/index.html -d ./vm.js && gh-pages -d ./vm.js",
+    "docs": "npm run build && parcel build doc/index.html -d ./vm.js && gh-pages -d ./vm.js",
     "format": "prettier --write ./src/**/*.ts ./test/**/*.ts",
     "precommit": "npm run lint && pretty-quick --staged",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "lint": "tslint -p ./ -c tslint.json",
-    "changelog":
-      "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0"
   },
   "repository": {
     "type": "git",
