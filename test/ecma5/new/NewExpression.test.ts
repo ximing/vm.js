@@ -25,5 +25,32 @@ module.exports = {
   // entity
   t.true(people instanceof People);
   t.deepEqual(people.name, "axetroy");
-  t.true(people.prototype.constructor === People);
+  t.true(people.constructor === People);
+});
+
+test("NewExpression for built-in functions", t => {
+  const sandbox: any = vm.createContext({
+    Array,
+    Date,
+    RegExp
+  });
+
+  const { array, date, regexp } = vm.runInContext(
+    `
+    var array = new Array(1, 2, 3);
+    var date = new Date();
+    var regexp = new RegExp('abc');
+
+    module.exports = {
+      array: array,
+      date: date,
+      regexp: regexp
+    }
+  `,
+    sandbox
+  );
+
+  t.deepEqual(array.length, 3);
+  t.true(date <= new Date());
+  t.true(regexp instanceof RegExp);
 });
